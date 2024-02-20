@@ -1,0 +1,9 @@
+server:
+  servlet:
+    context-path: /mcs-seguimiento-historia-clinica/
+#
+#spring:
+#  aop:
+#    proxy-target-class: true
+#logging:
+#  config: /opt/data/mcs-trabajo/log/mcs-consulta-trabajador-hogar/log4j2-mcs-consulta-trabajador-hogar.xml

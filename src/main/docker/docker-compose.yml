@@ -1,0 +1,19 @@
+version: '2.3'
+services:
+  mcsconsultatrabajadorhogar:
+    image: reposdocker.trabajo.gob.pe/mcs-consulta-trabajador-hogar:1.0.0
+    container_name: mcsconsultatrabajadorhogar
+    hostname: mcsconsultatrabajadorhogar
+    ports:
+      - "8081:8080"
+    volumes:
+      - "./mcs-trabajo:/opt/data/mcs-trabajo"
+    cpus: 0.9
+    cpuset: '0'
+    restart: always
+    mem_limit: '2048m'
+    networks:
+      internal:
+
+networks:
+  internal:
