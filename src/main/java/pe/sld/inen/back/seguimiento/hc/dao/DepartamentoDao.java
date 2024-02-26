@@ -7,5 +7,5 @@ import pe.sld.inen.back.seguimiento.hc.model.Departamento;
 
 public interface DepartamentoDao {
 	
-	public List<Departamento> getDepartamentos(Integer idServicio) throws SQLException, Exception;
+	public List<Departamento> getDepartamentos() throws SQLException, Exception;
 }

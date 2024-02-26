@@ -21,10 +21,10 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Override
-	public List<Departamento> getDepartamentos(Integer idServicio) throws Exception {
+	public List<Departamento> getDepartamentos() throws Exception {
 		List<Departamento> departamentos = new ArrayList<>();
 		try {
-			departamentos = departamentoDao.getDepartamentos(idServicio);
+			departamentos = departamentoDao.getDepartamentos();
 		} catch (Exception e) {
 			logger.error("Error en getDepartamentos ==> "+e.getMessage());
 			throw e;

@@ -12,7 +12,7 @@ public class DepartamentoRowMapper implements RowMapper<Departamento> {
 	@Override
 	public Departamento mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Departamento departamento = new Departamento();
-		departamento.setId_departamento(rs.getInt("id_departamento"));
+		departamento.setId_departamento(rs.getString("id_departamento"));
 		departamento.setDepartamento(rs.getString("departamento"));		
 		return departamento;
 	}

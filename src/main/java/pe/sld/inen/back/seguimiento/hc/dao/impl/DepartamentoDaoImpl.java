@@ -30,26 +30,19 @@ public class DepartamentoDaoImpl extends JdbcDaoSupport implements DepartamentoD
 		this.setDataSource(dataSource);
 		this.listarDepartamentos = new SimpleJdbcCall(this.getJdbcTemplate())
 				.withProcedureName("SP_LISTAR_DEPARTAMENTOS")
-				.withCatalogName("PKG_SEGUIMIENTO_HISTORIA_CLINICA")
+				.withCatalogName("INEN.PKG_SEGUIMIENTO_HISTORIA_CLINICA")
 				.withoutProcedureColumnMetaDataAccess()
-				.declareParameters(
-						new SqlParameter("p_ncodigo_servicio", Types.INTEGER),						
-						new SqlOutParameter("p_vcodigo", Types.VARCHAR),
-						new SqlOutParameter("p_cdepartamentos", OracleTypes.CURSOR, new DepartamentoRowMapper()));
+				.declareParameters(			
+						new SqlOutParameter("p_cDEPARTAMENTOS", OracleTypes.CURSOR, new DepartamentoRowMapper()));
 						
 	}
 
 	@Override
-	public List<Departamento> getDepartamentos(Integer idServicio) throws SQLException, Exception  {
-		List<Departamento> lstDepartamentos = new ArrayList<Departamento>();
-		Map<String, Object> inParam = new HashMap<>();
-		inParam.put("p_ncodigo_servicio", idServicio);
+	public List<Departamento> getDepartamentos() throws SQLException, Exception  {
+		List<Departamento> lstDepartamentos = new ArrayList<Departamento>();		
 		try {
-			Map<String, Object> out = listarDepartamentos.execute(inParam);
-			String codigo = (String) out.get("p_vcodigo");			
-			if(codigo.equals("0000")) {
-				lstDepartamentos = (List<Departamento>) out.get("p_cdepartamentos");
-			}			
+			Map<String, Object> out = listarDepartamentos.execute();		
+			lstDepartamentos = (List<Departamento>) out.get("p_cDEPARTAMENTOS");					
 		}catch (Exception e) {
 			logger.error("Error getDepartamentos ==> "+e.getMessage());
 			throw e;
