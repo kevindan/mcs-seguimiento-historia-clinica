@@ -12,7 +12,7 @@ public class ServicioRowMapper implements RowMapper<Servicio> {
 	@Override
 	public Servicio mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Servicio servicio = new Servicio();
-		servicio.setId_servicio(rs.getInt("id_servicio"));
+		servicio.setId_servicio(rs.getString("id_servicio"));
 		servicio.setServicio(rs.getString("servicio"));
 		return servicio;
 	}

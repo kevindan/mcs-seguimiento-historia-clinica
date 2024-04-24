@@ -28,11 +28,10 @@ public class ServicioDaoImpl extends JdbcDaoSupport implements ServicioDao {
 		this.setDataSource(dataSource);
 		this.listarServicios = new SimpleJdbcCall(this.getJdbcTemplate())
 				.withProcedureName("SP_LISTAR_SERVICIOS")
-				.withCatalogName("PKG_SEGUIMIENTO_HISTORIA_CLINICA")
+				.withCatalogName("INEN.PKG_SEGUIMIENTO_HISTORIA_CLINICA")
 				.withoutProcedureColumnMetaDataAccess()
-				.declareParameters(				
-						new SqlOutParameter("p_vcodigo", Types.VARCHAR),
-						new SqlOutParameter("p_cservicios", OracleTypes.CURSOR, new ServicioRowMapper()));
+				.declareParameters(
+						new SqlOutParameter("servicios", OracleTypes.CURSOR, new ServicioRowMapper()));
 						
 	}
 
@@ -41,10 +40,9 @@ public class ServicioDaoImpl extends JdbcDaoSupport implements ServicioDao {
 		List<Servicio> lstDepartamentos = new ArrayList<Servicio>();		
 		try {
 			Map<String, Object> out = listarServicios.execute();
-			String codigo = (String) out.get("p_vcodigo");			
-			if(codigo.equals("0000")) {
-				lstDepartamentos = (List<Servicio>) out.get("p_cservicios");
-			}			
+			
+				lstDepartamentos = (List<Servicio>) out.get("servicios");
+			
 		}catch (Exception e) {
 			logger.error("Error getServicios ==> "+e.getMessage());
 			throw e;

@@ -6,5 +6,6 @@ import pe.sld.inen.back.seguimiento.hc.model.Medico;
 
 public interface MedicoService {
 
-	public List<Medico> getMedicos() throws Exception;	
+	public List<Medico> getMedicosPorNombres(String nombres) throws Exception;	
+	public Medico getMedicoPorId(String idMedico) throws Exception;	
 }

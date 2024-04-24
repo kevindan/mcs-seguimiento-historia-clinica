@@ -33,7 +33,7 @@ public class DepartamentoDaoImpl extends JdbcDaoSupport implements DepartamentoD
 				.withCatalogName("INEN.PKG_SEGUIMIENTO_HISTORIA_CLINICA")
 				.withoutProcedureColumnMetaDataAccess()
 				.declareParameters(			
-						new SqlOutParameter("p_cDEPARTAMENTOS", OracleTypes.CURSOR, new DepartamentoRowMapper()));
+						new SqlOutParameter("departamentos", OracleTypes.CURSOR, new DepartamentoRowMapper()));
 						
 	}
 
@@ -42,7 +42,7 @@ public class DepartamentoDaoImpl extends JdbcDaoSupport implements DepartamentoD
 		List<Departamento> lstDepartamentos = new ArrayList<Departamento>();		
 		try {
 			Map<String, Object> out = listarDepartamentos.execute();		
-			lstDepartamentos = (List<Departamento>) out.get("p_cDEPARTAMENTOS");					
+			lstDepartamentos = (List<Departamento>) out.get("departamentos");					
 		}catch (Exception e) {
 			logger.error("Error getDepartamentos ==> "+e.getMessage());
 			throw e;

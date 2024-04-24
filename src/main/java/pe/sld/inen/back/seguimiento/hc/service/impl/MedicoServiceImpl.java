@@ -19,17 +19,29 @@ public class MedicoServiceImpl implements MedicoService {
 	private MedicoDao medicoDao;
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Override
-	public List<Medico> getMedicos() throws Exception {
+	public List<Medico> getMedicosPorNombres(String nombres) throws Exception {
 		List<Medico> medicos = new ArrayList<Medico>();
 		try {
-			medicos = medicoDao.getMedicos();
+			medicos = medicoDao.getMedicosPorNombres(nombres);
 		} catch (Exception e) {
-			logger.error("Error en getMedicos ==> "+e.getMessage());
+			logger.error("Error en getMedicosPorNombres ==> "+e.getMessage());
 			throw e;
 		}
 		return medicos;
+	}
+
+	@Override
+	public Medico getMedicoPorId(String idMedico) throws Exception {
+		Medico medico = null;
+		try {
+			medico = medicoDao.getMedicoPorId(idMedico);
+		} catch (Exception e) {
+			logger.error("Error en getMedicoPorId ==> "+e.getMessage());
+			throw e;
+		}
+		return medico;
 	}
 
 }

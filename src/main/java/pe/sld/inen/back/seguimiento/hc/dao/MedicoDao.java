@@ -7,5 +7,6 @@ import pe.sld.inen.back.seguimiento.hc.model.Medico;
 
 public interface MedicoDao {
 
-	public List<Medico> getMedicos() throws SQLException, Exception;	
+	public List<Medico> getMedicosPorNombres(String nombres) throws SQLException, Exception;	
+	public Medico getMedicoPorId(String idMedico) throws SQLException, Exception;	
 }

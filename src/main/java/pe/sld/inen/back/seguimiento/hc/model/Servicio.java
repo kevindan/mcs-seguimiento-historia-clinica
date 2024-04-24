@@ -13,7 +13,7 @@ public class Servicio implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer id_servicio;
+	private String id_servicio;
 	private String servicio;
 	
 }

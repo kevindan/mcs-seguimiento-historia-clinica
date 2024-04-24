@@ -12,7 +12,7 @@ public class MotivoRowMapper implements RowMapper<Motivo> {
 	@Override
 	public Motivo mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Motivo motivo = new Motivo();
-		motivo.setId_motivo(rs.getInt("id_motivo"));
+		motivo.setId_motivo(rs.getString("id_motivo"));
 		motivo.setMotivo(rs.getString("motivo"));
 		return motivo;
 	}

@@ -28,27 +28,20 @@ public class MotivoDaoImpl extends JdbcDaoSupport implements MotivoDao {
 		this.setDataSource(dataSource);
 		this.listarMotivos = new SimpleJdbcCall(this.getJdbcTemplate())
 				.withProcedureName("SP_LISTAR_MOTIVOS")
-				.withCatalogName("PKG_SEGUIMIENTO_HISTORIA_CLINICA")
+				.withCatalogName("INEN.PKG_SEGUIMIENTO_HISTORIA_CLINICA")
 				.withoutProcedureColumnMetaDataAccess()
-				.declareParameters(				
-						new SqlOutParameter("p_vcodigo", Types.VARCHAR),
-						new SqlOutParameter("p_cmotivos", OracleTypes.CURSOR, new MotivoRowMapper()));
-						
+				.declareParameters(
+						new SqlOutParameter("motivos", OracleTypes.CURSOR, new MotivoRowMapper()));
 	}
-
 
 	@Override
 	public List<Motivo> getMotivos() throws SQLException, Exception{
-		List<Motivo> lstMotivos = new ArrayList<Motivo>();
-				
+		List<Motivo> lstMotivos = new ArrayList<Motivo>();				
 		try {
 			Map<String, Object> out = listarMotivos.execute();
-			String codigo = (String) out.get("p_vcodigo");			
-			if(codigo.equals("0000")) {
-				lstMotivos = (List<Motivo>) out.get("p_cmotivos");
-			}			
+			lstMotivos = (List<Motivo>) out.get("motivos");		
 		}catch (Exception e) {
-			logger.error("Error getMotivo ==> "+e.getMessage());
+			logger.error("Error getMotivos ==> "+e.getMessage());
 			throw e;
 		}
 		return lstMotivos;	
